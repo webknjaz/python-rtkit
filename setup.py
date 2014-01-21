@@ -35,6 +35,7 @@ setup(
     description=description,
     long_description=long_description,
     classifiers=classifiers,
+    use_2to3=True,
     install_requires = reqs,
     packages=find_packages(),
     license = 'Apache License 2.0',

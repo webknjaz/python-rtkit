@@ -13,6 +13,7 @@
 
 """
 import os
+import sys
 import urllib
 import urllib2
 import cookielib
@@ -107,8 +108,13 @@ class CookieAuthenticator(AbstractAuthenticator):
 
     def _login(self):
         data = {'user': self.username, 'pass': self.password}
+
+        urlencoded_data = urllib.urlencode(data)
+        if sys.version_info > (2,7):
+            urlencoded_data = urlencoded_data.encode()
+
         self.opener.open(
-            urllib2.Request(self.url, urllib.urlencode(data))
+            urllib2.Request(self.url, urlencoded_data)
         )
 
 

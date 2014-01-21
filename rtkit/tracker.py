@@ -1,5 +1,6 @@
 import urllib
 import urllib2
+import sys
 from rtkit.resource import RTResource
 from rtkit.entities import *
 
@@ -30,9 +31,14 @@ class Tracker(RTResource):
         content = {'query': query, 'format': 'l'}
         if order:
             content['orderby'] = order
+
+        urlencoded_content = urllib.urlencode(content)
+        if sys.version_info > (2,7):
+            urlencoded_content = urlencoded_content.encode()
+
         req = urllib2.Request(
             url=self.auth.url + 'search/ticket',
-            data=urllib.urlencode(content),
+            data=urllib.urlencode(urlencoded_content),
         )
         response = self.response_cls(req, self.auth.open(req))
         tickets = [Ticket(tracker=self, **dict(d)) for d in response.parsed]

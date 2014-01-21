@@ -1,6 +1,7 @@
 import logging
 import re
 import os
+import sys
 from urllib2 import Request, HTTPError
 from rtkit import forms, errors
 from rtkit.parser import RTParser
@@ -72,6 +73,9 @@ class RTResponse(object):
 
         self.body = response.read()
         """Request Body"""
+
+        if sys.version_info > (2,7):
+            self.body = self.body.decode()
 
         self.status_int = response.code
         """Status Code"""
