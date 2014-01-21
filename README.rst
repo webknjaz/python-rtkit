@@ -2,11 +2,11 @@
 Request Tracker REST Interface
 ==============================
 
-.. image:: https://secure.travis-ci.org/z4r/python-rtkit.png?branch=master
-    :target: http://travis-ci.org/z4r/python-rtkit
+.. image:: https://secure.travis-ci.org/webknjaz/python-rtkit.png?branch=master
+    :target: http://travis-ci.org/webknjaz/python-rtkit
 
-.. image:: https://coveralls.io/repos/z4r/python-rtkit/badge.png?branch=master
-    :target: https://coveralls.io/r/z4r/python-rtkit
+.. image:: https://coveralls.io/repos/webknjaz/python-rtkit/badge.png?branch=master
+    :target: https://coveralls.io/r/webknjaz/python-rtkit
     
 .. image:: https://pypip.in/v/python-rtkit/badge.png
    :target: https://crate.io/packages/python-rtkit/
@@ -29,7 +29,7 @@ Using pip::
 
 Using pip dev::
 
-    $ pip install git+https://github.com/z4r/python-rtkit
+    $ pip install git+https://github.com/webknjaz/python-rtkit
 
 .. _summary:
 
