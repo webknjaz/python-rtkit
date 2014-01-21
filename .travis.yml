@@ -6,8 +6,8 @@ python:
   - "3.3"
 install:
   - pip install -r requirements.txt --use-mirrors
+  - pip install 2to3 --use-mirrors
 before_script:
-  - pip install -U -r test_requirements.txt --use-mirrors
   - pip install -U -r test_requirements.txt --use-mirrors
   - 2to3 -w build
 script:
