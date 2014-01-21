@@ -1,4 +1,5 @@
 from setuptools import setup, find_packages
+from setuptools.command.test import test as TestCommand
 import sys
 import os
 
@@ -24,6 +25,44 @@ try:
 except (IOError, OSError):
     reqs = ''
 
+
+class PyTest(TestCommand):
+    def finalize_options(self):
+        TestCommand.finalize_options(self)
+        self.test_args = ['{0}/tests'.format(name)]
+        #self.test_args = ['--doctest-modules', '--pep8', 'rtkit', '-v',
+        #                  '--cov', 'rtkit', '--cov-report', 'term-missing']
+        self.test_suite = True
+
+    def run_tests(self):
+        from pkg_resources import _namespace_packages
+        import pytest
+
+        def normalize_path(p):
+            return p
+
+        if sys.version_info >= (3,) and getattr(self.distribution, 'use_2to3', False):
+            module = self.test_args[-1].split('.')[0]
+            if module in _namespace_packages:
+                del_modules = []
+                if module in sys.modules:
+                    del_modules.append(module)
+                module += '.'
+                for name in sys.modules:
+                    if name.startswith(module):
+                        del_modules.append(name)
+                map(sys.modules.__delitem__, del_modules)
+
+            ei_cmd = self.get_finalized_command("egg_info")
+            self.test_args = [normalize_path(ei_cmd.egg_base)]
+            print('lol')
+            print(self.test_args)
+            print('lol')
+
+        errno = pytest.main(self.test_args)
+        sys.exit(errno)
+
+
 setup(
     name=name,
     version=version,
@@ -40,4 +79,6 @@ setup(
     packages=find_packages(),
     license = 'Apache License 2.0',
     keywords ='RequestTracker REST',
+    tests_require=['pytest'],
+    cmdclass = {'test': PyTest},
 )

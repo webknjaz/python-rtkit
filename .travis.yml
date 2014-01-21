@@ -6,11 +6,13 @@ python:
   - "3.3"
 install:
   - pip install -r requirements.txt --use-mirrors
-  - python setup.py install
 before_script:
   - pip install -U -r test_requirements.txt --use-mirrors
+  - pip install -U -r test_requirements.txt --use-mirrors
+  - 2to3 -w build
 script:
-  - py.test --doctest-modules --pep8 rtkit -v --cov rtkit --cov-report term-missing
+  - python setup.py test
+    #  - py.test --doctest-modules --pep8 rtkit -v --cov rtkit --cov-report term-missing
 after_success:
   - pip install python-coveralls --use-mirrors
   - coveralls
