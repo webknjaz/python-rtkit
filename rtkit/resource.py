@@ -74,7 +74,7 @@ class RTResponse(object):
         self.body = response.read()
         """Request Body"""
 
-        if sys.version_info > (2,7):
+        if sys.version_info > (2, 7):
             self.body = self.body.decode()
 
         self.status_int = response.code

@@ -110,7 +110,7 @@ class CookieAuthenticator(AbstractAuthenticator):
         data = {'user': self.username, 'pass': self.password}
 
         urlencoded_data = urllib.urlencode(data)
-        if sys.version_info > (2,7):
+        if sys.version_info > (2, 7):
             urlencoded_data = urlencoded_data.encode()
 
         self.opener.open(

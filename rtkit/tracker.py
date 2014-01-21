@@ -33,7 +33,7 @@ class Tracker(RTResource):
             content['orderby'] = order
 
         urlencoded_content = urllib.urlencode(content)
-        if sys.version_info > (2,7):
+        if sys.version_info > (2, 7):
             urlencoded_content = urlencoded_content.encode()
 
         req = urllib2.Request(
