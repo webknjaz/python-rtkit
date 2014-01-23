@@ -39,7 +39,7 @@ class PyTest(TestCommand):
         import pytest
 
         def normalize_path(p):
-            p = '/'.join(p, self.test_args[0])
+            p = '/'.join([p, self.test_args[0]])
             return p
 
         if sys.version_info >= (3,) and getattr(self.distribution, 'use_2to3', False):
