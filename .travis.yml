@@ -1,14 +1,15 @@
 language: python
 python:
-  - "2.6"
   - "2.7"
-  - "3.2"
   - "3.3"
 install:
   - pip install -r requirements.txt --use-mirrors
 before_script:
+  - pwd
+  - ls -laht
   - pip install -U -r test_requirements.txt --use-mirrors
   - 2to3 -w rtkit
+  - 2to3 -w build
 script:
   - python setup.py test
     #  - py.test --doctest-modules --pep8 rtkit -v --cov rtkit --cov-report term-missing
