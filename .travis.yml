@@ -6,12 +6,12 @@ install:
   - pip install -r requirements.txt --use-mirrors
   - python setup.py install
   # convert in case of py3k only:
-  - [[ $(python --version 2>&1 | awk '{ print $2 }' | awk -F. '{ print $1 }') -gt 2 ]] && 2to3 -w build
+  - if [[ $(echo $TRAVIS_PYTHON_VERSION | awk -F. '{ print $1 }') -gt 2 ]]; then 2to3 -w build; fi
 before_script:
   - pwd
   - ls -laht
   - pip install -U -r test_requirements.txt --use-mirrors
-  - [[ $(python --version 2>&1 | awk '{ print $2 }' | awk -F. '{ print $1 }') -gt 2 ]] && 2to3 -w rtkit
+  - if [[ $(echo $TRAVIS_PYTHON_VERSION | awk -F. '{ print $1 }') -gt 2 ]]; then 2to3 -w rtkit; fi
   #- 2to3 -w build
 script:
   - python setup.py test
