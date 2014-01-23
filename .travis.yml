@@ -12,6 +12,7 @@ before_script:
   - ls -laht
   - pip install -U -r test_requirements.txt --use-mirrors
   - if [[ $(echo $TRAVIS_PYTHON_VERSION | awk -F. '{ print $1 }') -gt 2 ]]; then 2to3 -w rtkit; fi
+  - rm -rf __pycache__
   #- 2to3 -w build
 script:
   - python setup.py test
