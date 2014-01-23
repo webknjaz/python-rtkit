@@ -2,10 +2,10 @@
 Request Tracker REST Interface
 ==============================
 
-.. image:: https://secure.travis-ci.org/webknjaz/python-rtkit.png?branch=master
+.. image:: https://secure.travis-ci.org/webknjaz/python-rtkit.png?branch=py3k
     :target: http://travis-ci.org/webknjaz/python-rtkit
 
-.. image:: https://coveralls.io/repos/webknjaz/python-rtkit/badge.png?branch=master
+.. image:: https://coveralls.io/repos/webknjaz/python-rtkit/badge.png?branch=py3k
     :target: https://coveralls.io/r/webknjaz/python-rtkit
     
 .. image:: https://pypip.in/v/python-rtkit/badge.png

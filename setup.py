@@ -57,6 +57,7 @@ class PyTest(TestCommand):
             ei_cmd = self.get_finalized_command("egg_info")
             self.test_args = [normalize_path(ei_cmd.egg_base)]
             print('lol')
+            print(sys.path)
             print(self.test_args)
             print('lol')
 
