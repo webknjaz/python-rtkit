@@ -5,12 +5,13 @@ python:
 install:
   - pip install -r requirements.txt --use-mirrors
   - python setup.py install
-  - 2to3 -w build
+  # convert in case of py3k only:
+  - [[ $(python --version 2>&1 | awk '{ print $2 }' | awk -F. '{ print $1 }') -gt 2 ]] && 2to3 -w build
 before_script:
   - pwd
   - ls -laht
   - pip install -U -r test_requirements.txt --use-mirrors
-  - 2to3 -w rtkit
+  - [[ $(python --version 2>&1 | awk '{ print $2 }' | awk -F. '{ print $1 }') -gt 2 ]] && 2to3 -w rtkit
   #- 2to3 -w build
 script:
   - python setup.py test

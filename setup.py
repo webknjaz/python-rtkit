@@ -29,7 +29,7 @@ except (IOError, OSError):
 class PyTest(TestCommand):
     def finalize_options(self):
         TestCommand.finalize_options(self)
-        self.test_args = ['{0}/tests'.format(name)]
+        self.test_args = ['rtkit/tests']
         #self.test_args = ['--doctest-modules', '--pep8', 'rtkit', '-v',
         #                  '--cov', 'rtkit', '--cov-report', 'term-missing']
         self.test_suite = True
@@ -39,6 +39,7 @@ class PyTest(TestCommand):
         import pytest
 
         def normalize_path(p):
+            p = '/'.join(p, self.test_args[0])
             return p
 
         if sys.version_info >= (3,) and getattr(self.distribution, 'use_2to3', False):
