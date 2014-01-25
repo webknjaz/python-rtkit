@@ -53,13 +53,10 @@ class PyTest(TestCommand):
                     if name.startswith(module):
                         del_modules.append(name)
                 map(sys.modules.__delitem__, del_modules)
+            del sys.modules['rtkit']
 
             ei_cmd = self.get_finalized_command("egg_info")
             self.test_args = [normalize_path(ei_cmd.egg_base)]
-            print('lol')
-            print(sys.path)
-            print(self.test_args)
-            print('lol')
 
         errno = pytest.main(self.test_args)
         sys.exit(errno)
